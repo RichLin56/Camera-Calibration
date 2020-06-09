@@ -1,0 +1,138 @@
+{	"io_settings":
+    {
+        "input_dir": "path/to/input_directory",
+        "output_dir": "path/to/output_directory",
+        "image_extension": ".png",
+        "intrinsics_camera_left": "path/to/left_cam/camera_intrinsics.xml",
+        "intrinsics_camera_right": "path/to/right_cam/camera_intrinsics.xml"
+    },
+
+	"checker_board":
+    {		
+        "rows": 4,
+        "cols": 5,
+        "square_length_mm": 10
+    },  
+
+    "camera_parameter":
+    {
+        "focal_length_mm": 12.0,
+        "pixel_size_mm": 0.0022
+    },
+
+    "checker_corner_extraction_settings":
+    {
+        "use_sector_based": true, //see definition at the bottom 
+        "flags":
+        {
+            "sector_based_method": //see definition at the bottom
+            {
+                "cv2.CALIB_CB_ACCURACY": true,
+                "cv2.CALIB_CB_NORMALIZE_IMAGE": true,
+                "cv2.CALIB_CB_EXHAUSTIVE": true
+            },
+            "standard_method": //see definition at the bottom
+            {
+                "cv2.CALIB_CB_ADAPTIVE_THRESH": true,
+                "cv2.CALIB_CB_NORMALIZE_IMAGE": true,
+                "cv2.CALIB_CB_FILTER_QUADS": true,
+                "cv2.CALIB_CB_FAST_CHECK": false
+            }
+        },
+        "corner_sub_pixel": //see definition at the bottom
+        {
+            "winSize": [5, 5],
+            "zeroZone": [-1, -1]
+        }
+    },
+
+    "checker_stereo_calibration_settings":
+    {      
+        "flags": //see definition at the bottom
+        {
+            "cv2.CALIB_FIX_INTRINSIC": true,
+            "cv2.CALIB_USE_INTRINSIC_GUESS": true,
+            "cv2.CALIB_USE_EXTRINSIC_GUESS": false,
+            "cv2.CALIB_FIX_PRINCIPAL_POINT": true,
+            "cv2.CALIB_FIX_FOCAL_LENGTH": true,
+            "cv2.CALIB_FIX_ASPECT_RATIO": true,
+            "cv2.CALIB_SAME_FOCAL_LENGTH": false,
+            "cv2.CALIB_ZERO_TANGENT_DIST": false,
+            "cv2.CALIB_FIX_K1": true,
+            "cv2.CALIB_FIX_K2": true,
+            "cv2.CALIB_FIX_K3": true,
+            "cv2.CALIB_FIX_K4": true,
+            "cv2.CALIB_FIX_K5": true,
+            "cv2.CALIB_FIX_K6": true,
+            "cv2.CALIB_RATIONAL_MODEL": false,
+            "cv2.CALIB_THIN_PRISM_MODEL": false,
+            "cv2.CALIB_FIX_S1_S2_S3_S4": false,
+            "cv2.CALIB_TILTED_MODEL": false,
+            "cv2.CALIB_FIX_TAUX_TAUY": false            
+        }
+    }			
+}
+
+
+//Definition of "checker_corner_extraction_settings"->"use_sector_based":
+//
+//The function is analog to findchessboardCorners but uses a localized radon transformation approximated by box filters being 
+//more robust to all sort of noise, faster on larger images and is able to directly return the sub-pixel position of the internal chessboard corners. 
+//The Method is based on the paper [54] "Accurate Detection and Localization of Checkerboard Corners for Calibration" 
+//demonstrating that the returned sub-pixel positions are more accurate than the one returned by cornerSubPix allowing 
+//a precise camera calibration for demanding applications.
+
+
+//Definition of "checker_corner_extraction_settings"->"flags"->"sector_based_method":
+//
+// CALIB_CB_NORMALIZE_IMAGE: Normalize the image gamma with equalizeHist before detection.
+//
+// CALIB_CB_EXHAUSTIVE: Run an exhaustive search to improve detection rate.
+//
+// CALIB_CB_ACCURACY: Up sample input image to improve sub-pixel accuracy due to aliasing effects. 
+//                    This should be used if an accurate camera calibration is required.
+
+
+//Definition of "checker_corner_extraction_settings"->"flags"->"standard_method":
+//
+//CALIB_CB_ADAPTIVE_THRESH: Use adaptive thresholding to convert the image to black and white, 
+//                          rather than a fixed threshold level (computed from the average image brightness).
+//
+//CALIB_CB_NORMALIZE_IMAGE: Normalize the image gamma with equalizeHist before applying fixed or adaptive thresholding.
+//
+//CALIB_CB_FILTER_QUADS: Use additional criteria (like contour area, perimeter, square-like shape) to filter out 
+//                       false quads extracted at the contour retrieval stage.
+//
+//CALIB_CB_FAST_CHECK: Run a fast check on the image that looks for chessboard corners, 
+//                     and shortcut the call if none is found. This can drastically speed up the call in the 
+//                     degenerate condition when no chessboard is observed.
+
+
+//Definition of "checker_corner_extraction_settings"->"corner_sub_pixel":
+//
+//winSize: Half of the side length of the search window. 
+//         For example, if winSize=Size(5,5) , then a (5∗2+1)×(5∗2+1)=11×11 search window is used.
+//
+//zeroZone:	Half of the size of the dead region in the middle of the search zone over which the summation in the formula below is not done. 
+//          It is used sometimes to avoid possible singularities of the autocorrelation matrix. 
+//          The value of (-1,-1) indicates that there is no such a size.
+
+
+//Definition of "checker_stereo_calibration_settings"->"flags":
+//
+//CALIB_FIX_INTRINSIC: Fix cameraMatrix? and distCoeffs? so that only R, T, E , and F matrices are estimated.
+//CALIB_USE_INTRINSIC_GUESS: Optimize some or all of the intrinsic parameters according to the specified flags. 
+//                           Initial values are provided by the user.
+//CALIB_USE_EXTRINSIC_GUESS: R, T contain valid initial values that are optimized further. 
+//                           Otherwise R, T are initialized to the median value of the pattern views (each dimension separately).
+//CALIB_FIX_PRINCIPAL_POINT: Fix the principal points during the optimization.
+//CALIB_FIX_FOCAL_LENGTH: Fix f(j)x and f(j)y .
+//CALIB_FIX_ASPECT_RATIO: Optimize f(j)y . Fix the ratio f(j)x/f(j)y
+//CALIB_SAME_FOCAL_LENGTH: Enforce f(0)x=f(1)x and f(0)y=f(1)y .
+//CALIB_ZERO_TANGENT_DIST: Set tangential distortion coefficients for each camera to zeros and fix there.
+//CALIB_FIX_K1,...,CALIB_FIX_K6: Do not change the corresponding radial distortion coefficient during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
+//CALIB_RATIONAL_MODEL: Enable coefficients k4, k5, and k6. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the rational model and return 8 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.
+//CALIB_THIN_PRISM_MODEL: Coefficients s1, s2, s3 and s4 are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the thin prism model and return 12 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.
+//CALIB_FIX_S1_S2_S3_S4: The thin prism distortion coefficients are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
+//CALIB_TILTED_MODEL: Coefficients tauX and tauY are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the tilted sensor model and return 14 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.
+//CALIB_FIX_TAUX_TAUY: The coefficients of the tilted sensor model are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.

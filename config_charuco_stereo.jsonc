@@ -1,0 +1,59 @@
+{	"io_settings":
+    {
+        "input_dir": "path/to/input_directory",
+        "output_dir": "path/to/output_directory",
+        "image_extension": ".png",
+        "intrinsics_camera_left": "path/to/left_cam/camera_intrinsics.xml",
+        "intrinsics_camera_right": "path/to/right_cam/camera_intrinsics.xml"
+    },
+
+	"charuco_board":
+    {		
+        "aruco_dict_int": 3, //see definition at the bottom
+        "squares_x": 22, 
+        "squares_y": 28, 
+        "square_length_mm": 9, 
+        "marker_length_mm": 7,
+        "print_scaling": 1.0
+    },
+    
+    "charuco_corner_extraction_settings":
+    {
+        "min_corners_aruco": 4,
+        "min_corners_charuco": 4,
+        "corner_sub_pixel": //see definition at the bottom 
+        {
+            "winSize": [5, 5],
+            "zeroZone": [-1, -1]
+        }
+    }
+}
+
+//Definition of "charuco_board"->"aruco_dict_int":
+//
+// 00: cv::aruco::DICT_4X4_50
+// 01: cv::aruco::DICT_4X4_100
+// 02: cv::aruco::DICT_4X4_250
+// 03: cv::aruco::DICT_4X4_1000
+// 04: cv::aruco::DICT_5X5_50
+// 05: cv::aruco::DICT_5X5_100
+// 06: cv::aruco::DICT_5X5_250
+// 07: cv::aruco::DICT_5X5_1000
+// 08: cv::aruco::DICT_6X6_50
+// 09: cv::aruco::DICT_6X6_100
+// 10: cv::aruco::DICT_6X6_250
+// 11: cv::aruco::DICT_6X6_1000
+// 12: cv::aruco::DICT_7X7_50
+// 13: cv::aruco::DICT_7X7_100
+// 14: cv::aruco::DICT_7X7_250
+// 15: cv::aruco::DICT_7X7_1000
+
+
+//Definition of "charuco_corner_extraction_settings"->"corner_sub_pixel":
+//
+//winSize: Half of the side length of the search window. 
+//         For example, if winSize=Size(5,5) , then a (5∗2+1)×(5∗2+1)=11×11 search window is used.
+//
+//zeroZone:	Half of the size of the dead region in the middle of the search zone over which the summation in the formula below is not done. 
+//          It is used sometimes to avoid possible singularities of the autocorrelation matrix. 
+//          The value of (-1,-1) indicates that there is no such a size.

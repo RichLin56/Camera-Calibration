@@ -1,0 +1,136 @@
+{	"io_settings":
+    {
+        "input_dir": "path/to/input_directory",
+        "output_dir": "path/to/output_directory",
+        "image_extension": ".png"
+    },
+
+	"checker_board":
+    {		
+        "rows": 4,
+        "cols": 5,
+        "square_length_mm": 10
+    },  
+
+    "camera_parameter":
+    {
+        "focal_length_mm": 12.0,
+        "pixel_size_mm": 0.0022
+    },
+
+    "checker_corner_extraction_settings":
+    {
+        "use_sector_based": true, //see definition at the bottom 
+        "flags":
+        {
+            "sector_based_method": //see definition at the bottom
+            {
+                "cv2.CALIB_CB_ACCURACY": true,
+                "cv2.CALIB_CB_NORMALIZE_IMAGE": true,
+                "cv2.CALIB_CB_EXHAUSTIVE": true
+            },
+            "standard_method": //see definition at the bottom
+            {
+                "cv2.CALIB_CB_ADAPTIVE_THRESH": true,
+                "cv2.CALIB_CB_NORMALIZE_IMAGE": true,
+                "cv2.CALIB_CB_FILTER_QUADS": true,
+                "cv2.CALIB_CB_FAST_CHECK": false
+            }
+        },
+        "corner_sub_pixel": //see definition at the bottom
+        {
+            "winSize": [5, 5],
+            "zeroZone": [-1, -1]
+        }
+    },
+
+    "checker_calibration_settings":
+    {
+        "max_reprojection_error": 0.1,
+        "use_releasing_object": true, //see definition at the bottom
+        "flags": //see definition at the bottom
+        {
+            "cv2.CALIB_USE_INTRINSIC_GUESS": true,
+            "cv2.CALIB_FIX_PRINCIPAL_POINT": false,
+            "cv2.CALIB_FIX_ASPECT_RATIO": true,
+            "cv2.CALIB_RATIONAL_MODEL": false,
+            "cv2.CALIB_FIX_K1": false,
+            "cv2.CALIB_FIX_K2": false,
+            "cv2.CALIB_FIX_K3": true
+        }
+    }			
+}
+
+
+//Definition of "checker_corner_extraction_settings"->"use_sector_based":
+//
+//The function is analog to findchessboardCorners but uses a localized radon transformation approximated by box filters being 
+//more robust to all sort of noise, faster on larger images and is able to directly return the sub-pixel position of the internal chessboard corners. 
+//The Method is based on the paper [54] "Accurate Detection and Localization of Checkerboard Corners for Calibration" 
+//demonstrating that the returned sub-pixel positions are more accurate than the one returned by cornerSubPix allowing 
+//a precise camera calibration for demanding applications.
+
+
+//Definition of "checker_corner_extraction_settings"->"flags"->"sector_based_method":
+//
+// CALIB_CB_NORMALIZE_IMAGE: Normalize the image gamma with equalizeHist before detection.
+//
+// CALIB_CB_EXHAUSTIVE: Run an exhaustive search to improve detection rate.
+//
+// CALIB_CB_ACCURACY: Up sample input image to improve sub-pixel accuracy due to aliasing effects. 
+//                    This should be used if an accurate camera calibration is required.
+
+
+//Definition of "checker_corner_extraction_settings"->"flags"->"standard_method":
+//
+//CALIB_CB_ADAPTIVE_THRESH: Use adaptive thresholding to convert the image to black and white, 
+//                          rather than a fixed threshold level (computed from the average image brightness).
+//
+//CALIB_CB_NORMALIZE_IMAGE: Normalize the image gamma with equalizeHist before applying fixed or adaptive thresholding.
+//
+//CALIB_CB_FILTER_QUADS: Use additional criteria (like contour area, perimeter, square-like shape) to filter out 
+//                       false quads extracted at the contour retrieval stage.
+//
+//CALIB_CB_FAST_CHECK: Run a fast check on the image that looks for chessboard corners, 
+//                     and shortcut the call if none is found. This can drastically speed up the call in the 
+//                     degenerate condition when no chessboard is observed.
+
+
+//Definition of "checker_corner_extraction_settings"->"corner_sub_pixel":
+//
+//winSize: Half of the side length of the search window. 
+//         For example, if winSize=Size(5,5) , then a (5∗2+1)×(5∗2+1)=11×11 search window is used.
+//
+//zeroZone:	Half of the size of the dead region in the middle of the search zone over which the summation in the formula below is not done. 
+//          It is used sometimes to avoid possible singularities of the autocorrelation matrix. 
+//          The value of (-1,-1) indicates that there is no such a size.
+
+
+//Definition of "checker_calibration_settings"->"use_releasing_object":
+//
+//This function is an extension of calibrateCamera(). 
+//In many common cases with inaccurate, unmeasured, roughly planar targets (calibration plates), 
+//this method can dramatically improve the precision of the estimated camera parameters. 
+
+
+//Definition of "checker_calibration_settings"->"flags":
+//
+// CALIB_USE_INTRINSIC_GUESS: cameraMatrix contains valid initial values of fx, fy, cx, cy that are optimized further. 
+//                            Otherwise, (cx, cy) is initially set to the image center ( imageSize is used), and 
+//                            focal distances are computed in a least-squares fashion. 
+//
+// CALIB_FIX_PRINCIPAL_POINT: The principal point is not changed during the global optimization. It stays at the center 
+//                            or at a different location specified when CALIB_USE_INTRINSIC_GUESS is set too.
+//
+// CALIB_FIX_ASPECT_RATIO: The functions considers only fy as a free parameter. The ratio fx/fy stays the same 
+//                         as in the input cameraMatrix . When CALIB_USE_INTRINSIC_GUESS is not set, the actual 
+//                         input values of fx and fy are ignored, only their ratio is computed and used further.
+//
+// CALIB_RATIONAL_MODEL: Coefficients k4, k5, and k6 are enabled. To provide the backward compatibility, 
+//                       this extra flag should be explicitly specified to make the calibration function use the rational 
+//                       model and return 8 coefficients. If the flag is not set, the function computes and 
+//                       returns only 5 distortion coefficients.
+//
+//CALIB_FIX_K1,...,CALIB_FIX_K3: The corresponding radial distortion coefficient is not changed during the optimization. 
+//                               If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. 
+//                               Otherwise, it is set to 0.
