@@ -14,12 +14,6 @@
         "square_length_mm": 10
     },  
 
-    "camera_parameter":
-    {
-        "focal_length_mm": 12.0,
-        "pixel_size_mm": 0.0022
-    },
-
     "checker_corner_extraction_settings":
     {
         "use_sector_based": true, //see definition at the bottom 
