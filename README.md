@@ -28,7 +28,7 @@ The output directory contains the `camera_intrinsics.xml` file in which the cali
          |    └──...
          ├── info.log
          └── camera_intrinsics.xml
-#### Checkerboard
+#### Checkerboard - calib_checker.py
  1. Capture some images of your checkerboard with the camera you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
  2. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker.jsonc`
  3. Start script:
@@ -40,7 +40,7 @@ The output directory contains the `camera_intrinsics.xml` file in which the cali
  4. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
  5. (Optional) restart script with improved settings
 
-#### ChArUco
+#### ChArUco - calib_charuco.py
  1. Capture some images of your ChArUcoboard with the camera you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger ChArUcoboard (and that's only if you move the ChArUcoboard enough between images to obtain a "rich" set of views`)
  2. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_charuco.jsonc`
  3. Start script:
@@ -52,7 +52,7 @@ The output directory contains the `camera_intrinsics.xml` file in which the cali
  4. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
  5. (Optional) restart script with improved settings
 
-### Extrinsic Stereo Camera Calibration
+### Extrinsic Stereo Camera Calibration 
 For extrinsic stereo camera calibraton (determining the position of the cameras relative to each other) you can chose between two different planar targets. Settings for calibration are provided by a .json file inside the repository.
 The output directory contains the `stereo_camera_extrinsics.xml` file in which the calibration parameters are stored. Additionally, a visualization of the detected corners and a log file is also be stored in the output directory.
 #### Output Directory Structure
@@ -64,7 +64,7 @@ The output directory contains the `stereo_camera_extrinsics.xml` file in which t
          ├── info.log
          └── camera_extrinsics.xml
 
-#### Checkerboard
+#### Checkerboard - calib_checker_stereo.py
  1. Capture some images of your checkerboard with the stereo camera rig you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
  2. Make sure you've made an intrinsic calibration for each of your cameras.
  3. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker_stereo.jsonc`
@@ -77,7 +77,7 @@ The output directory contains the `stereo_camera_extrinsics.xml` file in which t
  5. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
  6. (Optional) restart script with improved settings
 
-#### ChArUco
+#### ChArUco - calib_charuco_stereo.py
  1. Capture some images of your ChArUcoboard with the stereo camera rig you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger ChArUcoboard (and that's only if you move the ChArUcoboard enough between images to obtain a "rich" set of views`)
  2. Make sure you've made an intrinsic calibration for each of your cameras.
  3. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_charuco_stereo.jsonc`
