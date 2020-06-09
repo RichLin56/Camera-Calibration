@@ -20,11 +20,11 @@ In this repo, camera calibration is based on OpenCV 4.2.0 functionality. A `3x3 
 For intrinsic camera calibraton (determining camera and distortion parameters) you can chose between two different planar targets.
 Settings for calibration are provided by a .json file inside the repository.
 #### Settings in config
-1. `io_settings`:
-2. `board_settings`:
-3. `camera_parameter_settings`:
-4. `corner_extraction_settings`:
-5. `calibration_settings`:
+1. `io_settings`: Paths to input and output directory
+2. `board_settings`: Information about the board used for camera calibration
+3. `camera_parameter_settings`: Information about the camera which is going to be calibrated
+4. `corner_extraction_settings`: Option to choose between different algorithms and set their arguments(flags). Explanation at the bottom of config file
+5. `calibration_settings`: Option to choose between different algorithms and set their arguments(flags). Explanation at the bottom of config file
 #### General Pipeline in Scripts
  1. Load settings from config
  2. Create board
