@@ -63,22 +63,6 @@ def determine_checker_stereo_calibration_flag(flag_dict: dict):
         flag += cv2.CALIB_FIX_K2
     if flag_dict['cv2.CALIB_FIX_K3'] is True:
         flag += cv2.CALIB_FIX_K3
-    if flag_dict['cv2.CALIB_FIX_K4'] is True:
-        flag += cv2.CALIB_FIX_K4
-    if flag_dict['cv2.CALIB_FIX_K5'] is True:
-        flag += cv2.CALIB_FIX_K5
-    if flag_dict['cv2.CALIB_FIX_K6'] is True:
-        flag += cv2.CALIB_FIX_K6
-    if flag_dict['cv2.CALIB_RATIONAL_MODEL'] is True:
-        flag += cv2.CALIB_RATIONAL_MODEL
-    if flag_dict['cv2.CALIB_THIN_PRISM_MODEL'] is True:
-        flag += cv2.CALIB_THIN_PRISM_MODEL
-    if flag_dict['cv2.CALIB_FIX_S1_S2_S3_S4'] is True:
-        flag += cv2.CALIB_FIX_S1_S2_S3_S4
-    if flag_dict['cv2.CALIB_TILTED_MODEL'] is True:
-        flag += cv2.CALIB_TILTED_MODEL
-    if flag_dict['cv2.CALIB_FIX_TAUX_TAUY'] is True:
-        flag += cv2.CALIB_FIX_TAUX_TAUY
     return flag
 
 

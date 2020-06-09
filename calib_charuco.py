@@ -92,8 +92,6 @@ def determine_charuco_calibration_flag(flag_dict: dict):
         flag += cv2.CALIB_USE_INTRINSIC_GUESS
     if flag_dict['cv2.CALIB_FIX_PRINCIPAL_POINT'] is True:
         flag += cv2.CALIB_FIX_PRINCIPAL_POINT
-    if flag_dict['cv2.CALIB_RATIONAL_MODEL'] is True:
-        flag += cv2.CALIB_RATIONAL_MODEL
     if flag_dict['cv2.CALIB_FIX_ASPECT_RATIO'] is True:
         flag += cv2.CALIB_FIX_ASPECT_RATIO
     if flag_dict['cv2.CALIB_FIX_K1'] is True:

@@ -60,15 +60,7 @@
             "cv2.CALIB_ZERO_TANGENT_DIST": false,
             "cv2.CALIB_FIX_K1": true,
             "cv2.CALIB_FIX_K2": true,
-            "cv2.CALIB_FIX_K3": true,
-            "cv2.CALIB_FIX_K4": true,
-            "cv2.CALIB_FIX_K5": true,
-            "cv2.CALIB_FIX_K6": true,
-            "cv2.CALIB_RATIONAL_MODEL": false,
-            "cv2.CALIB_THIN_PRISM_MODEL": false,
-            "cv2.CALIB_FIX_S1_S2_S3_S4": false,
-            "cv2.CALIB_TILTED_MODEL": false,
-            "cv2.CALIB_FIX_TAUX_TAUY": false            
+            "cv2.CALIB_FIX_K3": true          
         }
     }			
 }
@@ -130,9 +122,4 @@
 //CALIB_FIX_ASPECT_RATIO: Optimize f(j)y . Fix the ratio f(j)x/f(j)y
 //CALIB_SAME_FOCAL_LENGTH: Enforce f(0)x=f(1)x and f(0)y=f(1)y .
 //CALIB_ZERO_TANGENT_DIST: Set tangential distortion coefficients for each camera to zeros and fix there.
-//CALIB_FIX_K1,...,CALIB_FIX_K6: Do not change the corresponding radial distortion coefficient during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
-//CALIB_RATIONAL_MODEL: Enable coefficients k4, k5, and k6. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the rational model and return 8 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.
-//CALIB_THIN_PRISM_MODEL: Coefficients s1, s2, s3 and s4 are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the thin prism model and return 12 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.
-//CALIB_FIX_S1_S2_S3_S4: The thin prism distortion coefficients are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
-//CALIB_TILTED_MODEL: Coefficients tauX and tauY are enabled. To provide the backward compatibility, this extra flag should be explicitly specified to make the calibration function use the tilted sensor model and return 14 coefficients. If the flag is not set, the function computes and returns only 5 distortion coefficients.
-//CALIB_FIX_TAUX_TAUY: The coefficients of the tilted sensor model are not changed during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
+//CALIB_FIX_K1,...,CALIB_FIX_K3: Do not change the corresponding radial distortion coefficient during the optimization. If CALIB_USE_INTRINSIC_GUESS is set, the coefficient from the supplied distCoeffs matrix is used. Otherwise, it is set to 0.
