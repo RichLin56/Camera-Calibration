@@ -12,7 +12,7 @@
         "squares_y": 28, 
         "square_length_mm": 9, 
         "marker_length_mm": 7,
-        "print_scaling": 1.0
+        "print_scaling": 1.0 
     },  
 
     "camera_parameter":
@@ -34,7 +34,7 @@
 
     "charuco_calibration_settings":
     {
-        "max_reprojection_error": 1.5,
+        "max_reprojection_error": 1.5, //max. error used for calibration refinement
         "flags":  //see definition at the bottom
         {
             "cv2.CALIB_USE_INTRINSIC_GUESS": true,

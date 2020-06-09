@@ -46,7 +46,7 @@
 
     "checker_calibration_settings":
     {
-        "max_reprojection_error": 0.1,
+        "max_reprojection_error": 0.1, //max. error used for calibration refinement
         "use_releasing_object": true, //see definition at the bottom
         "flags": //see definition at the bottom
         {
