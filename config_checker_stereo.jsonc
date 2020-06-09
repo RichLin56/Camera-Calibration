@@ -7,7 +7,7 @@
         "intrinsics_camera_right": "path/to/right_cam/camera_intrinsics.xml"
     },
 
-	"checker_board":
+	"checker_board": //a 5-by-6 chessboard has 4x5 "inner" corners -> rows=4, cols=5
     {		
         "rows": 4,
         "cols": 5,

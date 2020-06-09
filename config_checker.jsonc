@@ -5,10 +5,10 @@
         "image_extension": ".png"
     },
 
-	"checker_board":
+	"checker_board": //a 5-by-6 chessboard has 4x5 "inner" corners -> rows=4, cols=5
     {		
-        "rows": 4,
-        "cols": 5,
+        "rows": 4, 
+        "cols": 5, 
         "square_length_mm": 10
     },  
 
