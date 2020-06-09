@@ -135,3 +135,10 @@ The output directory contains the `stereo_camera_extrinsics.xml` file in which t
 ## Logging
 - __info.log__ which logs what is happening and will be copied to your output directory after the script is done or stay in `path/to/Camera-Calibration/log/` if something causes the script to crash
 
+## To Do
+ - [ ] calib_checker.py - line 202: Implement option (in config-file) to display these values in log-file
+ - [ ] calib_charuco.py - line 149: Implement option (in config-file) to display these values in log-file
+ - [ ] calib_checker_stereo.py - line 160: Implement refinement based on max_rep_error (when time is available)
+ - [ ] calib_charuco_stereo.py - line 138: Median method is good, but i think it is better to use median as starting point for some optimization method
+ - [ ] Implement parameters for the ChArUco detectMarker process
+
