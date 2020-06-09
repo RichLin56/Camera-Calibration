@@ -20,6 +20,14 @@ In this repo, camera calibration is based on OpenCV 4.2.0 functionality. A `3x3 
 For intrinsic camera calibraton (determining camera and distortion parameters) you can chose between two different planar targets.
 Settings for calibration are provided by a .json file inside the repository.
 The output directory contains the `camera_intrinsics.xml` file in which the calibration parameters are stored. Additionally, a visualization of the detected corners and a log file is also be stored in the output directory.
+#### Output Directory Structure
+        output_dir           # path:  /path/to/output_dir
+         ├── CornerVisualization         
+         |    └──corners_image_1.extension
+         |    └──corners_image_1.extension
+         |    └──...
+         ├── info.log
+         └── camera_intrinsics.xml
 #### Checkerboard
  1. Capture some images of your checkerboard with the camera you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
  2. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker.jsonc`
@@ -47,6 +55,14 @@ The output directory contains the `camera_intrinsics.xml` file in which the cali
 ### Extrinsic Stereo Camera Calibration
 For extrinsic stereo camera calibraton (determining the position of the cameras relative to each other) you can chose between two different planar targets. Settings for calibration are provided by a .json file inside the repository.
 The output directory contains the `stereo_camera_extrinsics.xml` file in which the calibration parameters are stored. Additionally, a visualization of the detected corners and a log file is also be stored in the output directory.
+#### Output Directory Structure
+        output_dir           # path:  /path/to/output_dir
+         ├── CornerVisualization         
+         |    └──corners_image_1.extension
+         |    └──corners_image_1.extension
+         |    └──...
+         ├── info.log
+         └── camera_extrinsics.xml
 
 #### Checkerboard
  1. Capture some images of your checkerboard with the stereo camera rig you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
