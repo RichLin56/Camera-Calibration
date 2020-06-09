@@ -70,7 +70,7 @@ The output directory contains the `camera_intrinsics.xml` file in which the cali
 ### Extrinsic Stereo Camera Calibration 
 For extrinsic stereo camera calibraton (determining the position of the cameras relative to each other) you can chose between two different planar targets. Settings for calibration are provided by a .json file inside the repository.
 #### Settings in config
-1. `io_settings`: Paths to input, output directory and intrinsics for left and right camera in your stereo camera rig
+1. `io_settings`: Paths to input, output directory and camera_intrinsics.xml for left and right camera in your stereo camera rig
 2. `board_settings`: Information about the board used for stereo camera calibration
 3. `corner_extraction_settings`: Option to choose between different algorithms and set their arguments(flags). Explanation at the bottom of config file
 4. `calibration_settings`: Option to choose between different algorithms and set their arguments(flags). Explanation at the bottom of config file
@@ -84,9 +84,30 @@ The output directory contains the `stereo_camera_extrinsics.xml` file in which t
          |    └──...
          ├── info.log
          └── camera_extrinsics.xml
+ 
+ #### Input Directory Structure
+`Attention`: Make sure while capturing images with your stereo rig, that __`images belonging to the left camera have "left" in their filenames and images beloging to the right camera have "right" in their filenames`__. __`Use a time stemp in the filename or a unique ID for every pair`__, since images will be sorted by name, then split into left and right groups and paired afterwards based on their position in the group (see below for example).
+ 
+ #### This works:
+          input_dir           # path:  /path/to/input_dir
+                 |      
+                 └──2020_05_21_15_18_2129_left.extension
+                 └──2020_05_21_15_18_2150_right.extension
+                 └──2020_05_21_15_24_2200_left.extension
+                 └──2020_05_21_15_24_2255_right.extension
+                 └──... 
+ #### This works as well: 
+           input_dir           # path:  /path/to/input_dir
+                 |      
+                 └──left_1.extension
+                 └──left_2.extension
+                 └──right_1.extension 
+                 └──right_2.extension
+                 └──... 
 
 #### Checkerboard - calib_checker_stereo.py
- 1. Capture some images of your checkerboard with the stereo camera rig you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
+ 1. Capture some images of your checkerboard with the stereo camera rig you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`). 
+                 
  2. Make sure you've made an intrinsic calibration for each of your cameras.
  3. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker_stereo.jsonc`
  4. Start script:
