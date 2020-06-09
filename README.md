@@ -19,6 +19,19 @@ In this repo, camera calibration is based on OpenCV 4.2.0 functionality. A `3x3 
 ### Intrinsic Camera Calibration
 For intrinsic camera calibraton (determining camera and distortion parameters) you can chose between two different planar targets.
 Settings for calibration are provided by a .json file inside the repository.
+#### Settings in config
+1. `io_settings`:
+2. `board_settings`:
+3. `camera_parameter_settings`:
+4. `corner_extraction_settings`:
+5. `calibration_settings`:
+#### General Pipeline in Scripts
+ 1. Load settings from config
+ 2. Create board
+ 3. Read image paths
+ 4. Extract corners in images
+ 5. Calibrate camera
+ 6. Refine calibration results by using only images which resulted in a max. reprojection error lower that what was specified in the config
 #### Output Directory Structure
 The output directory contains the `camera_intrinsics.xml` file in which the calibration parameters are stored. Additionally, a visualization of the detected corners and a log file is also be stored in the output directory.
 
