@@ -49,19 +49,30 @@ For extrinsic stereo camera calibraton (determining the position of the cameras 
 The output directory contains the `stereo_camera_extrinsics.xml` file in which the calibration parameters are stored. Additionally, a visualization of the detected corners and a log file is also be stored in the output directory.
 
 #### Checkerboard
-
- 1. Capture some images of your checkerboard with the camera you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
- 2. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker.jsonc`
- 3. Start script:
+ 1. Capture some images of your checkerboard with the stereo camera rig you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
+ 2. Make sure you've made an intrinsic calibration for each of your cameras.
+ 3. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker_stereo.jsonc`
+ 4. Start script:
 
         $ cd path/to/Camera-Calibration/
         $ activate camcalib
-        $ python calib_checker.py
+        $ python calib_checker_stereo.py
         
- 4. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
- 5. (Optional) restart script with improved settings
+ 5. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
+ 6. (Optional) restart script with improved settings
 
 #### ChArUco
+ 1. Capture some images of your ChArUcoboard with the stereo camera rig you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger ChArUcoboard (and that's only if you move the ChArUcoboard enough between images to obtain a "rich" set of views`)
+ 2. Make sure you've made an intrinsic calibration for each of your cameras.
+ 3. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_charuco_stereo.jsonc`
+ 4. Start script:
+
+        $ cd path/to/Camera-Calibration/
+        $ activate camcalib
+        $ python calib_charuco_stereo.py
+        
+ 5. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
+ 6. (Optional) restart script with improved settings
 
 ## Logging
 - __info.log__ which logs what is happening and will be copied to your output directory after the script is done or stay in `path/to/Camera-Calibration/log/` if something causes the script to crash
