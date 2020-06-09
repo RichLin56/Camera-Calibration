@@ -20,15 +20,28 @@ In this repo, camera calibration is based on OpenCV 4.2.0 functionality. A `3x3 
 For intrinsic camera calibraton (determining camera and distortion parameters) you can chose between two different methods.
 Settings for calibration are provided by a json file inside the repository.
 #### Checkerboard
-1. Capture some images of your checkerboard with the camera you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
-2. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker.jsonc`
-3. Start script:
+ 1. Capture some images of your checkerboard with the camera you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger chessboard (and that's only if you move the chessboard enough between images to obtain a "rich" set of views`)
+ 2. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_checker.jsonc`
+ 3. Start script:
 
         $ cd path/to/Camera-Calibration/
         $ activate camcalib
         $ python calib_checker.py
+        
+ 4. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
+ 5. (Optional) restart script with improved settings
 
 #### ChArUco
+ 1. Capture some images of your ChArUcoboard with the camera you want to calibrate (`tip: for high-quality results, you'll need at least ten images of a 7-by-8 or larger ChArUcoboard (and that's only if you move the ChArUcoboard enough between images to obtain a "rich" set of views`)
+ 2. Setup the configuration file by opening: `path/to/Camera-Calibration/calib_charuco.jsonc`
+ 3. Start script:
+
+        $ cd path/to/Camera-Calibration/
+        $ activate camcalib
+        $ python calib_charuco.py
+        
+ 4. Check script output which will be saved in `path/to/output_dir`(configured in config.jsonc)
+ 5. (Optional) restart script with improved settings
 
 ### Extrinsic Stereo Camera Calibration
 
