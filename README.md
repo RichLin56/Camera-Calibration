@@ -15,7 +15,7 @@ Using [conda](https://docs.conda.io/en/latest/miniconda.html) for managing virtu
     $ pip install commentjson==0.8.3
 
 ### Camera Calibration
-In this repo, camera calibration is based on OpenCV 4.2.0 functionality. We use a 3x3 camera matrix with parameters f<sub>x</sub>, f<sub>y</sub>, c<sub>x</sub>, c<sub>y</sub>. For more informations on this, see [here (OpenCV docu)](https://docs.opencv.org/4.2.0/d9/d0c/group__calib3d.html).
+In this repo, camera calibration is based on OpenCV 4.2.0 functionality. We use a `3x3 camera matrix with 4 parameters` (f<sub>x</sub>, f<sub>y</sub>, c<sub>x</sub>, c<sub>y</sub>) and `5 distortion parameters for tangential and radial distortions` (k<sub>1</sub>, k<sub>2</sub>, p<sub>1</sub>, p<sub>2</sub>, k<sub>3</sub>). For more informations on this, see [here (OpenCV docu)](https://docs.opencv.org/4.2.0/d9/d0c/group__calib3d.html).
 #### Checkerboard
 
 #### ChArUco
