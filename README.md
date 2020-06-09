@@ -31,7 +31,7 @@ Settings for calibration are provided by a .json file inside the repository.
  3. Read image paths
  4. Extract corners in images
  5. Calibrate camera
- 6. Refine calibration results by using only images which resulted in a max. reprojection error lower that what was specified in the config
+ 6. Refine calibration results by using only images which resulted in a max. reprojection error lower than what was specified in the config
 #### Output Directory Structure
 The output directory contains the `camera_intrinsics.xml` file in which the calibration parameters are stored. Additionally, a visualization of the detected corners and a log file is also be stored in the output directory.
 
@@ -69,6 +69,11 @@ The output directory contains the `camera_intrinsics.xml` file in which the cali
 
 ### Extrinsic Stereo Camera Calibration 
 For extrinsic stereo camera calibraton (determining the position of the cameras relative to each other) you can chose between two different planar targets. Settings for calibration are provided by a .json file inside the repository.
+#### Settings in config
+1. `io_settings`: Paths to input, output directory and intrinsics for left and right camera in your stereo camera rig
+2. `board_settings`: Information about the board used for stereo camera calibration
+3. `corner_extraction_settings`: Option to choose between different algorithms and set their arguments(flags). Explanation at the bottom of config file
+4. `calibration_settings`: Option to choose between different algorithms and set their arguments(flags). Explanation at the bottom of config file
 #### Output Directory Structure
 The output directory contains the `stereo_camera_extrinsics.xml` file in which the calibration parameters are stored. Additionally, a visualization of the detected corners and a log file is also be stored in the output directory.
 
@@ -108,6 +113,4 @@ The output directory contains the `stereo_camera_extrinsics.xml` file in which t
 
 ## Logging
 - __info.log__ which logs what is happening and will be copied to your output directory after the script is done or stay in `path/to/Camera-Calibration/log/` if something causes the script to crash
-
-
 
