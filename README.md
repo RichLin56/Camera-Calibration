@@ -1,5 +1,5 @@
 # Camera-Calibration
-
+This repository contains implementations of camera calibration algorithms based on OpenCV 4.2.0. Camera calibration can be done by using either a planar checkerboard pattern or a planar ChArUco pattern. Intrinsic camera calibration as well as extrinsic stereo camera calibration is supported for checker and ChArUco planar patterns.
 ## Requirements
 #### Python = 3.6.8, OpenCV 4.2.0
 
